@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { ItemsModule } from './items/items.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -31,6 +32,8 @@ import { ItemsModule } from './items/items.module';
     }),
 
     ItemsModule,
+
+    UsersModule,
   ],
   controllers: [],
   providers: [],

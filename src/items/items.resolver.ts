@@ -24,9 +24,9 @@ export class ItemsResolver {
 
   @Query(() => Item, { name: 'item' })
   async findOne(
-    @Args('id', { type: () => ID }, ParseUUIDPipe ) id: string
+    @Args('serial', { type: () => String }, ParseUUIDPipe ) serial: string
   ): Promise<Item> {
-    return this.itemsService.findOne(id);
+    return this.itemsService.findOne(serial);
   }
 
   @Mutation(() => Item)

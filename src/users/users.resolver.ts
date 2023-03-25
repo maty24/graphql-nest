@@ -12,7 +12,7 @@ export class UsersResolver {
   findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
-
+/*
   @Query(() => User, { name: 'user' })
   findOne(@Args('id', { type: () => ID }) id: string): Promise<User[]> {
     return this.usersService.findOne(id);
@@ -21,5 +21,5 @@ export class UsersResolver {
   @Mutation(() => User)
   blockUser(@Args('id', { type: () => ID }) id: string): Promise<User> {
     return this.usersService.block(id);
-  }
+  }*/
 }

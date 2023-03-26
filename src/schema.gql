@@ -26,6 +26,7 @@ type Query {
   items: [Item!]!
   item(serial: String!): Item!
   users: [User!]!
+  revalidate: AuthResponse!
 }
 
 type Mutation {

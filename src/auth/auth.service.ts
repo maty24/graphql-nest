@@ -14,8 +14,9 @@ import { User } from '../users/entities/user.entity';
 export class AuthService {
   constructor(
     private readonly userService: UsersService,
+    //para leer el token
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   //este es el metodo que genera el token
   private getJwtToken(userId: string) {

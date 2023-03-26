@@ -4,10 +4,12 @@ import { AuthService } from './auth.service';
 import { LoginInput, SignupInput } from './dto';
 import { AuthResponse } from './types/auth-response.types';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { CurrentUser } from './decorators/current-user.decorator';
+import { User } from '../users/entities/user.entity';
 
 @Resolver()
 export class AuthResolver {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   //vamos a regreasr un authresponse
   @Mutation(() => AuthResponse, { name: 'signup' })
@@ -24,13 +26,13 @@ export class AuthResolver {
   ): Promise<AuthResponse> {
     return this.authService.login(loginInput);
   }
-  
-    @Query(()=> AuthResponse,{ name: 'revalidate' })
-    //nos esta pidiendo un jwt de lo contrario no hace nada
-    @UseGuards(JwtAuthGuard)
-    async revalidateToken(
 
-    ) {
-      return this.authService.revalidateToken();
-    }
+  @Query(() => AuthResponse, { name: 'revalidate' })
+  //nos esta pidiendo un jwt de lo contrario no hace nada
+  @UseGuards(JwtAuthGuard)
+  async revalidateToken(
+    @CurrentUser() user: User
+  ) {
+    return this.authService.revalidateToken(user);
+  }
 }

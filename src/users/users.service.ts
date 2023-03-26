@@ -35,7 +35,7 @@ export class UsersService {
   async findOneByEmail(email: string): Promise<User> {
     try {
       //si no lo encuentra lanza un error
-      return this.userRepository.findOneByOrFail({ email });
+      return await this.userRepository.findOneByOrFail({ email });
     } catch (error) {
       this.handleDBErrors(error);
     }
